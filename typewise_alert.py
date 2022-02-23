@@ -1,4 +1,6 @@
 
+coolimgtype_limit = {'PASSIVE_COOLING':[0,35],'HI_ACTIVE_COOLING':[0,45],'MED_ACTIVE_COOLING':[0,40]}
+
 def infer_breach(value, lowerLimit, upperLimit):
   if value < lowerLimit:
     return 'TOO_LOW'
@@ -8,17 +10,8 @@ def infer_breach(value, lowerLimit, upperLimit):
 
 
 def classify_temperature_breach(coolingType, temperatureInC):
-  lowerLimit = 0
-  upperLimit = 0
-  if coolingType == 'PASSIVE_COOLING':
-    lowerLimit = 0
-    upperLimit = 35
-  elif coolingType == 'HI_ACTIVE_COOLING':
-    lowerLimit = 0
-    upperLimit = 45
-  elif coolingType == 'MED_ACTIVE_COOLING':
-    lowerLimit = 0
-    upperLimit = 40
+  lowerLimit = coolimgtype_limit[coolingType][0]
+  upperLimit = coolimgtype_limit[coolingType][1]
   return infer_breach(temperatureInC, lowerLimit, upperLimit)
 
 
