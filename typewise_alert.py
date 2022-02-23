@@ -23,6 +23,7 @@ def classify_temperature_breach(coolingType, temperatureInC):
 
 
 def check_and_alert(alertTarget, batteryChar, temperatureInC):
+  status =0
   breachType =\
     classify_temperature_breach(batteryChar['coolingType'], temperatureInC)
   if alertTarget == 'TO_CONTROLLER':
