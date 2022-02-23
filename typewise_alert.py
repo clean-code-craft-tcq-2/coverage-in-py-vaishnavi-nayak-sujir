@@ -1,6 +1,6 @@
 
 coolimgtype_limit = {'PASSIVE_COOLING':[0,35],'HI_ACTIVE_COOLING':[0,45],'MED_ACTIVE_COOLING':[0,40]}
-
+email_message = {'TOO_LOW':'Hi, the temperature is too low','TOO_HIGH':'Hi, the temperature is too high' }
 def infer_breach(value, lowerLimit, upperLimit):
   if value < lowerLimit:
     return 'TOO_LOW'
@@ -26,14 +26,13 @@ def check_and_alert(alertTarget, batteryChar, temperatureInC):
 
 def send_to_controller(breachType):
   header = 0xfeed
-  print(f'{header}, {breachType}')
+  print('{}, {}'.format(header,breachType))
 
 
 def send_to_email(breachType):
-  recepient = "a.b@c.com"
-  if breachType == 'TOO_LOW':
-    print(f'To: {recepient}')
-    print('Hi, the temperature is too low')
-  elif breachType == 'TOO_HIGH':
-    print(f'To: {recepient}')
-    print('Hi, the temperature is too high')
+	recepient = "a.b@c.com"
+	print('To: {}'.format(recepient))
+	print(email_message[breachType])
+	return 1
+	
+
