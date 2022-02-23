@@ -1,3 +1,10 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Wed Feb 23 17:15:08 2022
+
+@author: IVA3KOR
+"""
+
 
 coolimgtype_limit = {'PASSIVE_COOLING':[0,35],'HI_ACTIVE_COOLING':[0,45],'MED_ACTIVE_COOLING':[0,40]}
 email_message = {'TOO_LOW':'Hi, the temperature is too low','TOO_HIGH':'Hi, the temperature is too high' }
@@ -20,9 +27,10 @@ def check_and_alert(alertTarget, batteryChar, temperatureInC):
     classify_temperature_breach(batteryChar['coolingType'], temperatureInC)
   if alertTarget == 'TO_CONTROLLER':
     send_to_controller(breachType)
+    return 1
   elif alertTarget == 'TO_EMAIL':
     send_to_email(breachType)
-  return 1
+    return 1
 
 
 def send_to_controller(breachType):
